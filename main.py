@@ -52,12 +52,16 @@ class Game:
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_UP:
                     self.player.moving_up = True
+                    self.player.change_animation('up')
                 elif event.key == pygame.K_DOWN:
                     self.player.moving_down = True
+                    self.player.change_animation('down')
                 elif event.key == pygame.K_LEFT:
                     self.player.moving_left = True
+                    self.player.change_animation('left')
                 elif event.key == pygame.K_RIGHT:
                     self.player.moving_right = True
+                    self.player.change_animation('right')
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_UP:
                     self.player.moving_up = False

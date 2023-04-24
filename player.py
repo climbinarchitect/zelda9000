@@ -9,6 +9,12 @@ class Player(pygame.sprite.Sprite):
         self.image.set_colorkey([255, 255, 255])
         self.rect = self.image.get_rect()
         self.position = [x, y]
+        self.animations = {
+            'down': self.get_image(0, 0),
+            'left': self.get_image(0, 64),
+            'right': self.get_image(0, 130),
+            'up': self.get_image(0, 192)
+        }
         
         self.moving_up = False
         self.moving_down = False
@@ -32,3 +38,7 @@ class Player(pygame.sprite.Sprite):
         image = pygame.Surface([64, 64])
         image.blit(self.sprite_sheet, (0, 0), (x, y, 64, 64))
         return image
+     
+    
+    def change_animation(self, name):
+        self.image = self.animations[name]
