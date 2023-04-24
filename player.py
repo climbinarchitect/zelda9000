@@ -18,13 +18,13 @@ class Player(pygame.sprite.Sprite):
 
     def update(self):
         if self.moving_up:
-            self.position[1] -= 5
+            self.position[1] -= 1
         if self.moving_down:
-            self.position[1] += 5
+            self.position[1] += 1
         if self.moving_left:
-            self.position[0] -= 5
+            self.position[0] -= 1
         if self.moving_right:
-            self.position[0] += 5
+            self.position[0] += 1
 
         self.rect.topleft = self.position
 
