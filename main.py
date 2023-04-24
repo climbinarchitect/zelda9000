@@ -26,7 +26,7 @@ class Game:
         map_layer.zoom = 1
 
         #generer un joueur
-        self.player = Player(100, 80)
+        self.player = Player(600, 450)
 
         # dessiner le groupe de calques
         self.group = pyscroll.PyscrollGroup(map_layer=map_layer, default_layer=3)
@@ -41,18 +41,35 @@ class Game:
         self.clock.tick(FPS)
         self.events()
         self.draw()
-        pygame.display.flip()
 
 
     def events(self):
         # gérer les événements, tels que les mouvements du personnage, les collisions, etc.
         for event in pygame.event.get():
-                if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
-                    self.running = False
-
+            if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):
+                self.running = False
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_UP:
+                    self.player.moving_up = True
+                elif event.key == pygame.K_DOWN:
+                    self.player.moving_down = True
+                elif event.key == pygame.K_LEFT:
+                    self.player.moving_left = True
+                elif event.key == pygame.K_RIGHT:
+                    self.player.moving_right = True
+            if event.type == pygame.KEYUP:
+                if event.key == pygame.K_UP:
+                    self.player.moving_up = False
+                elif event.key == pygame.K_DOWN:
+                    self.player.moving_down = False
+                elif event.key == pygame.K_LEFT:
+                    self.player.moving_left = False
+                elif event.key == pygame.K_RIGHT:
+                    self.player.moving_right = False
 
     def draw(self):
         # dessiner les objets du jeu sur l'écran
+        self.group.update()
         self.group.draw(self.screen)
         pygame.display.flip()
 
